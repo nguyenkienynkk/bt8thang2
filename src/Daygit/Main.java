@@ -1,49 +1,48 @@
 package Daygit;
 
-
-
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.System.in;
-import static java.lang.System.out;
+
 
 public class Main {
     public static void main(String[] args) {
         menu();
     }
-    Integer[] arr = { 1, 43, 65, 3, -10, 23, 45, 6, 5, 4, 99, 14, 97 };
-    private static Integer[] ListSo;
 
     public static Scanner scanner = new Scanner(System.in);
 
     public static void menu() {
         boolean check = true;
-
+        List<Otooo> danhSachOto =new ArrayList<>();
         while (check) {
-            System.out.println("________Bài tập_________");
-            System.out.println("1.Tính tổng các dãy số trên");
-            System.out.println("2.Tìm kiếm tất cả số lớn hơn 35");
-            System.out.println("3.Sắp xếp các số trên theo thứ tự giảm dần");
-            System.out.println("4.Tìm tất cả các cặp số có tổng chia hết cho 10");
-            System.out.println("5.Exit");
+            System.out.println("________Quản Lý Showroom_________");
+            System.out.println("1.Thêm xe vào hệ thống quản lý");
+            System.out.println("2.Tìm kiếm xe theo tên");
+            System.out.println("3.Tìm kiếm theo thương hiệu");
+            System.out.println("4.Sắp xếp xe theo giá bán - mã lực - năm sản xuất");
+            System.out.println("5. Tìm tất cả xe có màu đen và trước năm 2018");
+            System.out.println("6.Exit");
             int so = Integer.parseInt(scanner.nextLine());
             switch (so){
                 case 1:
-                    tongDaySoTren();
-
+                    themXeMoi(danhSachOto);
                     break;
                 case 2:
-                    timKiemCacSoLonHon35();
+                    timKiemTheoTenXe(danhSachOto); ;
                     break;
                 case 3:
-                    sXGiamDan();
+                    timKiemTheoThuongHieu(danhSachOto);
                     break;
                 case 4:
-                    timCacCapSoChiaHetCho10();
+                    sapXepXeTheoGiaBanMaLucNamsX(danhSachOto);
                     break;
                 case 5:
+                    timKiemXeMauDensXTruocNam2018(danhSachOto);
+                    break;
+                case 6:
                     check = false;
                     System.out.println("Exit");
                     break;
@@ -54,64 +53,67 @@ public class Main {
 
         }
     }
-    private static void sXGiamDan() {
-        int []array = {1, 43, 65, 3, -10, 23, 45, 6, 4, 99};
-        List<Integer> giatri2 = new ArrayList<>();
 
-        System.out.println("\nMảng ban đầu: ");
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + "\t");
+    private static void sapXepXeTheoGiaBanMaLucNamsX(List<Otooo> danhSachOto) {
+    }
+    private static void timKiemXeMauDensXTruocNam2018(List<Otooo> danhSachOto) {
+        System.out.println("Nhập chữ den để tìm kiếm các xe màu đen trước năm 2018");
+
+        for (int i = 0; i < danhSachOto.size(); i++) {
+            if (danhSachOto.get(i).getYear()<(2018)){
+                System.out.println(danhSachOto.get(i).toString());
+            }
         }
+    }
 
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = array.length - 1; j >= 1; j--) {
-                int tempSort = 0;
-                if (array[j] < array[j - 1]) {
-                    tempSort = array[j];
-                    array[j] = array[j - 1];
-                    array[j - 1] = tempSort;
-                }
+
+    private static void timKiemTheoTenXe(List<Otooo> danhSachXe) {
+        System.out.println("Nhập tên xe cần tìm:");
+        String name1 = scanner.nextLine();
+        System.out.println("Xe có tên bạn muốn tìm là:");
+        for (int i = 0; i < danhSachXe.size(); i++) {
+            if (danhSachXe.get(i).getName().equals(name1)){
+                System.out.println(danhSachXe.get(i).toString());
             }
         }
 
-        System.out.println("\nMảng sau khi sắp xếp: ");
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + "\t");
-        }
     }
-    private static void timCacCapSoChiaHetCho10() {
-//        int []array = {1, 43, 65, 3, -10, 23, 45, 6, 4, 99};
-//        List<Integer> giatri1 = new ArrayList<>();
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i] % 10 == 0) {
-//                System.out.print(array[i] + "\t");
-//            }
-//        }
-//        System.out.println("Các cặp số chia hết cho 10 là: ");
-//        for (int i = 0; i <= array.length; i++) {
-//
-//        }
-    }
-    private static void timKiemCacSoLonHon35() {
-        int []array = {1, 43, 65, 3, -10, 23, 45, 6, 4, 99};
-        List<Integer> giatri = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]>35){
-                giatri.add(array[i]);
+
+
+
+    private static void timKiemTheoThuongHieu(List<Otooo> danhSachThuongHieu) {
+
+        System.out.println("Nhập thương hiệu bạn muốn tìm:");
+        String thuonghieu = scanner.nextLine();
+        System.out.println("Xe có thương hiệu bạn cần tìm là:");
+        for (int i = 0; i < danhSachThuongHieu.size(); i++) {
+            if (danhSachThuongHieu.get(i).getTrademark().equals(thuonghieu)){
+                System.out.println(danhSachThuongHieu.get(i).getName());
             }
         }
-        System.out.println("Các số lớn hơn 35"+giatri);
-
     }
 
-    public static void tongDaySoTren(){
-        int[] array = {1, 43, 65, 3, -10, 23, 45, 6, 4, 99};
-        int max = array[0];
-        int sum = 0;
-        for (int num : array) {
-            sum = sum + num;
+
+    private static void themXeMoi(List<Otooo> danhSachOto) {
+        System.out.println("Mời bạn nhập vào số lượng xe:");
+        int slx = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < slx; i++) {
+            System.out.println("Mời bạn nhập tên ô tô thứ:");
+            String name = scanner.nextLine();
+            System.out.println("Mời bạn nhập màu ô tô thứ "+(i+1));
+            String color = scanner.nextLine();
+            System.out.println("Mời bạn nhập năm sản xuất của ô tô thứ:"+(i+1));
+            int years = Integer.parseInt(scanner.nextLine());
+            System.out.println("Mời bạn nhập thương hiệu của ô tô thứ "+(i+1));
+            String thuonghieu = scanner.nextLine();
+            System.out.println("Mời bạn nhập số mã lực của ô tô thứ:"+(i+1));
+            int maluc = Integer.parseInt(scanner.nextLine());
+            System.out.println("Mời bạn nhập giá bán của ô tô thứ:"+(i+1));
+            int giaban = Integer.parseInt(scanner.nextLine());
+            System.out.println("Mời bạn nhập ngày nhập kho của ô tô thứ:"+(i+1));
+            int ngaynhapkho = Integer.parseInt(scanner.nextLine());
+            danhSachOto.add(new Otooo(name,color,years,thuonghieu,maluc,giaban,ngaynhapkho));
         }
-        out.println("Tổng các chữ số trong list trên là:" + sum);
     }
 
 }
