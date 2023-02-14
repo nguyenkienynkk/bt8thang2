@@ -53,13 +53,17 @@ public class Bt142 {
 
     private static void showThoiGianLamViec(List<NhanVien1> danhSachNhanVien1) {
         for (int i = 0; i < danhSachNhanVien1.size(); i++) {
-            System.out.println(danhSachNhanVien1.get(i).getThoiGianCheckIn());
-            System.out.println(danhSachNhanVien1.get(i).getThoiGianCheckOut());
             ZonedDateTime zdt = ZonedDateTime.of(danhSachNhanVien1.get(i).getThoiGianCheckIn(), ZoneId.systemDefault());
             ZonedDateTime zdt2 = ZonedDateTime.of(danhSachNhanVien1.get(i).getThoiGianCheckOut(), ZoneId.systemDefault());
             long date1 = zdt.toInstant().toEpochMilli();
             long date2 = zdt2.toInstant().toEpochMilli();
-            System.out.println((date2 - date1)/1000);
+            System.out.println(((date2 - date1)/1000)-20);
+            if (date2-date1>=180){
+                System.out.println("Nhân viên này làm đủ tiêu chuẩn");
+            }else {
+                System.out.println("Nhân viên này đã làm thiếu" + (200-((date2 - date1)/1000)-20) + "giây");
+                System.out.println("Không đạt yêu cầu");
+            }
         }
     }
 
